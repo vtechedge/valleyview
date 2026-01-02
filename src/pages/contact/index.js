@@ -16,6 +16,29 @@ const Dates = [
   },
 ];
 
+const oshawaDates = [
+  {
+    Monday: "9am to 7pm",
+    Tuesday: "9am to 7pm",
+    Wednesday: "9am to 7pm",
+    Thursday: "9am to 7pm",
+    Friday: "9am to 7pm",
+    "Sat/Sun": "10am to 3pm",
+    "Stat holidays (open) Please confirm with the front desk staff": "",
+  },
+];
+const courticeDates = [
+  {
+    Monday: "9am to 7pm",
+    Tuesday: "9am to 7pm",
+    Wednesday: "9am to 7pm",
+    Thursday: "9am to 7pm",
+    Friday: "9am to 7pm",
+    "Sat/Sun": "10am to 3pm",
+    "Stat holidays (open) Please confirm with the front desk staff": "",
+  },
+];
+
 const Index = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -70,12 +93,19 @@ Message: ${formData.message}`
               >
                 1916 Dundas St E Unit 6, Whitby
               </p>
-            ) : (
+            ) : locationAccess === "Oshawa" ? (
               <p
                 className="font-light pb-[30px]"
                 style={{ fontSize: Clamp(1, 1.5) }}
               >
                 991 Taunton Rd E B3, Oshawa, ON L1K 0Z7, Canada
+              </p>
+            ) : (
+              <p
+                className="font-light pb-[30px]"
+                style={{ fontSize: Clamp(1, 1.5) }}
+              >
+                1656 Nash Rd #2Courtice, ON L1E 1S8
               </p>
             )}
 
@@ -88,9 +118,18 @@ Message: ${formData.message}`
                 className="rounded-xl w-full h-[450px]"
                 style={{ height: Clamp(15, 28) }}
               ></iframe>
-            ) : (
+            ) : locationAccess === "Oshawa" ? (
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2884.078275663616!2d-78.84900402362726!3d43.94217347107847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d52d5f4c97b78f%3A0xc09f357d032f78e!2s991%20Taunton%20Rd%20E%20B3%2C%20Oshawa%2C%20ON%20L1K%200Z7%2C%20Canada!5e0!3m2!1sen!2sca!4v1710968456285!5m2!1sen!2sca"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-xl"
+                style={{ height: Clamp(15, 28) }}
+              ></iframe>
+            ) : (
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.148226363602!2d-78.8865449!3d43.9145857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d50320e74f0f4b%3A0x4e353d881000c613!2sValleyView%20Medical%20%26%20Walk-In%20Courtice!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -101,7 +140,7 @@ Message: ${formData.message}`
           </div>
           <div className="w-full xl:w-[50%]">
             <h1 className="text-[24px] font-semibold py-5 text-blue-600">
-              New Patient Registration Form
+              Any Queries?
             </h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <input
@@ -150,6 +189,7 @@ Message: ${formData.message}`
                 <option value="">Select City</option>
                 <option value="Whitby">Whitby</option>
                 <option value="Oshawa">Oshawa</option>
+                <option value="Courtice">Courtice</option>
               </select>
               <textarea
                 name="message"
@@ -181,18 +221,50 @@ Message: ${formData.message}`
               className=" font-light pb-[30px] text-blue-600"
               style={{ fontSize: Clamp(1, 1.5) }}
             >
-              +1 905-434-1662
+              {locationAccess === "Whitby"
+                ? " +1 905-434-1662"
+                : locationAccess === "Oshawa"
+                  ? "+1 905-367-5402"
+                  : "+1 905-674-1447"}
             </p>
             <div className="text-[16px]">
-              {Object.entries(Dates[0]).map(([day, time]) => (
-                <div
-                  key={day}
-                  className="grid grid-cols-2 gap-x-1 pb-2 items-center justify-start"
-                >
-                  <p className="font-bold whitespace-nowrap">{day}:</p>
-                  <p>{time}</p>
-                </div>
-              ))}
+              {locationAccess === "Whitby" ? (
+                <>
+                  {Object.entries(Dates[0]).map(([day, time]) => (
+                    <div
+                      key={day}
+                      className="grid grid-cols-2 gap-x-1 pb-2 items-center justify-start"
+                    >
+                      <p className="font-bold whitespace-nowrap">{day}:</p>
+                      <p>{time}</p>
+                    </div>
+                  ))}
+                </>
+              ) : locationAccess === "Oshawa" ? (
+                <>
+                  {Object.entries(oshawaDates[0]).map(([day, time]) => (
+                    <div
+                      key={day}
+                      className="grid grid-cols-2 gap-x-1 pb-2 items-center justify-start"
+                    >
+                      <p className="font-bold whitespace-nowrap">{day}:</p>
+                      <p>{time}</p>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {Object.entries(courticeDates[0]).map(([day, time]) => (
+                    <div
+                      key={day}
+                      className="grid grid-cols-2 gap-x-1 pb-2 items-center justify-start"
+                    >
+                      <p className="font-bold whitespace-nowrap">{day}:</p>
+                      <p>{time}</p>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
             <span className="flex items-start xl:items-end">
               <h1 className="font-bold text-[18px]">NOTE:</h1>

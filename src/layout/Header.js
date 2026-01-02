@@ -20,6 +20,8 @@ const Header = () => {
     closeDialog();
   };
 
+  const locationAccess = localStorage.getItem("location", location);
+
   return (
     <div
       className={`bg-white text-black flex items-center justify-between px-5 py-2 w-auto z-50 rounded-2xl shadow-xl fixed left-[20px] right-[20px] top-[20px]`}
@@ -59,24 +61,69 @@ const Header = () => {
         </li>
       </ul>
       <ul className="hidden xl:flex items-center gap-3">
-        <li
-          className="group relative px-[23px] py-[8px] bg-red-700 border-transparent border-[1px] hover:bg-red-500
+        {locationAccess === "Whitby" ? (
+          <li
+            className="group relative px-[23px] py-[8px] bg-red-700 border-transparent border-[1px] hover:bg-red-500
          text-white hover:text-white cursor-pointer duration-300 rounded-full"
-          onClick={() =>
-            handleLocationClick(
-              "https://ocean.cognisantmd.com/intake/patients.html?linkRef=04f9eeaf-8434-4153-aa26-2d0c910f4020#/online-booking"
-            )
-          }
-        >
-          BOOK APPOINTMENT
-        </li>
-
-        <li
-          className="group relative px-[23px] py-[8px] bg-red-700 border-transparent border-[1px] hover:bg-red-500
+            onClick={() =>
+              handleLocationClick(
+                "https://ocean.cognisantmd.com/intake/patients.html?linkRef=04f9eeaf-8434-4153-aa26-2d0c910f4020#/online-booking"
+              )
+            }
+          >
+            BOOK APPOINTMENT
+          </li>
+        ) : locationAccess === "Oshawa" ? (
+          <li
+            className="group relative px-[23px] py-[8px] bg-red-700 border-transparent border-[1px] hover:bg-red-500
+        text-white hover:text-white cursor-pointer duration-300 rounded-full"
+            onClick={() =>
+              handleLocationClick(
+                "https://ocean.cognisantmd.com/online-booking/d2f2fe68-de99-4725-871e-f22ff35853ef"
+              )
+            }
+          >
+            BOOK APPOINTMENT
+          </li>
+        ) : (
+          <li
+            className="group relative px-[23px] py-[8px] bg-red-700 border-transparent border-[1px] hover:bg-red-500
+         text-white hover:text-white cursor-pointer duration-300 rounded-full"
+            onClick={() =>
+              handleLocationClick(
+                "https://ocean.cognisantmd.com/intake/patients.html?linkRef=04f9eeaf-8434-4153-aa26-2d0c910f4020#/online-booking"
+              )
+            }
+          >
+            BOOK APPOINTMENT
+          </li>
+        )}
+        {locationAccess === "Whitby" ? (
+          <li
+            className="group relative px-[23px] py-[8px] bg-red-700 border-transparent border-[1px] hover:bg-red-500
+              text-white hover:text-white cursor-pointer duration-300 rounded-full"
+          >
+            <Link href="https://www.bookmyshot.com/9054351100">PHARMACY</Link>
+          </li>
+        ) : locationAccess === "Oshawa" ? (
+          <li
+            className="group relative px-[23px] py-[8px] bg-red-700 border-transparent border-[1px] hover:bg-red-500
           text-white hover:text-white cursor-pointer duration-300 rounded-full"
-        >
-          <Link href="https://www.bookmyshot.com/9054351100">PHARMACY</Link>
-        </li>
+          >
+            <Link href="https://pharmachoice.erefills.ca/pharmachoice/centralprofile/orderpage3.php?sphone=(905)%367-8510&sname=Harmony">
+              PHARMACY
+            </Link>
+          </li>
+        ) : (
+          <>
+            <li
+              className="group relative px-[23px] py-[8px] bg-red-700 border-transparent border-[1px] hover:bg-red-500
+              text-white hover:text-white cursor-pointer duration-300 rounded-full"
+            >
+              <Link href="https://maplemeds.ca/">PHARMACY</Link>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );

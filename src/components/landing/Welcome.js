@@ -25,9 +25,15 @@ const Welcome = () => {
               alt=""
               className="w-full xl:w-[50%] object-cover block xl:hidden h-[300px] md:h-[400px] rounded-2xl"
             />
-          ) : (
+          ) : locationAccess === "Oshawa" ? (
             <img
               src="/images/oshawa-rec.jpeg"
+              alt=""
+              className="w-full xl:w-[50%] object-cover block xl:hidden h-[300px] md:h-[400px] rounded-2xl"
+            />
+          ) : (
+            <img
+              src="/images/courtice-2.jpeg"
               alt=""
               className="w-full xl:w-[50%] object-cover block xl:hidden h-[300px] md:h-[400px] rounded-2xl"
             />
@@ -95,9 +101,15 @@ const Welcome = () => {
             alt=""
             className="w-full xl:w-[50%] object-cover hidden xl:block rounded-xl"
           />
-        ) : (
+        ) : locationAccess === "Oshawa" ? (
           <img
             src="/images/oshawa-rec.jpeg"
+            alt=""
+            className="w-full xl:w-[50%] object-cover hidden xl:block rounded-xl"
+          />
+        ) : (
+          <img
+            src="/images/courtice-2.jpeg"
             alt=""
             className="w-full xl:w-[50%] object-cover hidden xl:block rounded-xl"
           />

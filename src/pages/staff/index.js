@@ -1,5 +1,5 @@
 import Banner from "@/components/Banner";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Data } from "@/static/StaffData";
 import Link from "next/link";
 import Clamp from "@/components/Clamp";
@@ -7,14 +7,25 @@ import Head from "next/head";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("doctors");
+  const selectedLocation = localStorage.getItem("location") || "Whitby";
+
+  useEffect(() => {
+    if (selectedLocation === "Courtice" && activeTab === "pharmacists") {
+      setActiveTab("doctors");
+    }
+  }, [selectedLocation, activeTab]);
 
   const renderData = (category) => {
-    const selectedLocation = localStorage.getItem("location") || "Whitby";
-
     return Data[0][category]
-      .filter((item) =>
-        selectedLocation === "Oshawa" ? item.oshawa : !item.oshawa
-      )
+      .filter((item) => {
+        if (selectedLocation === "Oshawa") {
+          return item.oshawa;
+        } else if (selectedLocation === "Courtice") {
+          return item.courtice;
+        } else {
+          return !item.oshawa && !item.courtice;
+        }
+      })
       .map((item, index) => (
         <Link
           href={`/staff/${item.slug}`}
@@ -70,17 +81,19 @@ const Index = () => {
           >
             Administrative Team
           </button>
-          <button
-            onClick={() => setActiveTab("pharmacists")}
-            className={`px-6 py-2 w-full md:w-auto ${
-              activeTab === "pharmacists"
-                ? "bg-white p-10 rounded-xl text-black"
-                : "text-gray-500"
-            }`}
-            style={{ fontSize: Clamp(1, 1.5) }}
-          >
-            Pharmacists
-          </button>
+          {selectedLocation !== "Courtice" && (
+            <button
+              onClick={() => setActiveTab("pharmacists")}
+              className={`px-6 py-2 w-full md:w-auto ${
+                activeTab === "pharmacists"
+                  ? "bg-white p-10 rounded-xl text-black"
+                  : "text-gray-500"
+              }`}
+              style={{ fontSize: Clamp(1, 1.5) }}
+            >
+              Pharmacists
+            </button>
+          )}
           <button
             onClick={() => setActiveTab("manager")}
             className={`px-6 py-2 w-full md:w-auto ${

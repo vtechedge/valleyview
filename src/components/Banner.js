@@ -32,9 +32,16 @@ const Banner = ({
           >
             {buttonText}
           </Link>
-        ) : (
+        ) : locationAccess === "Oshawa" ? (
           <Link
             href="mailto:valleyviewharmony@gmail.com"
+            className="px-3 md:px-6 py-1 md:py-2 bg-white text-black font-semibold rounded hover:bg-gray-300 transition duration-300 text-[14px]"
+          >
+            {buttonText}
+          </Link>
+        ) : (
+          <Link
+            href="mailto:valleyviewcourtice@gmail.com"
             className="px-3 md:px-6 py-1 md:py-2 bg-white text-black font-semibold rounded hover:bg-gray-300 transition duration-300 text-[14px]"
           >
             {buttonText}

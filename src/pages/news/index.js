@@ -28,6 +28,21 @@ const Index = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
+  const parseBoldText = (text) => {
+    const parts = text.split(/(\*\*[^*]+\*\*)/g);
+
+    return parts.map((part, index) => {
+      if (part.startsWith("**") && part.endsWith("**")) {
+        return (
+          <strong key={index} className="font-semibold">
+            {part.slice(2, -2)}
+          </strong>
+        );
+      }
+      return part;
+    });
+  };
+
   return (
     <>
       <Head>
@@ -37,7 +52,7 @@ const Index = () => {
         </title>
       </Head>
       <div style={{ paddingTop: Clamp(3.7, 7.5) }}>
-        <Banner subtitle="LATEST NEWS AND UPDATES" buttonText="Email Us" />
+        <Banner subtitle="The Latest Blog & News" buttonText="Email Us" />
         <div className="padding-x py-[50px]">
           <div className="flex flex-row flex-wrap justify-center w-full gap-6">
             {currentItems.map((news) => (
@@ -58,7 +73,7 @@ const Index = () => {
                   </h2>
                 </div>
                 <p className="text-[16px] mb-4">
-                  {truncateText(news.description)}
+                  {parseBoldText(truncateText(news.description))}
                 </p>
                 <Link href={`/news/${news.id}`} className="w-full">
                   <button className="bg-blue-600 text-white px-4 py-2 rounded-lg mt-[40px] w-full">

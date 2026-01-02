@@ -40,6 +40,8 @@ const HamburgerMenu = ({ data }) => {
     };
   }, [isMenuOpen, router]);
 
+  const locationAccess = localStorage.getItem("location", location);
+
   return (
     <div>
       <button className=" xl:hidden text-black" onClick={toggleMenu}>
@@ -110,12 +112,30 @@ const HamburgerMenu = ({ data }) => {
             <Link href="/news/4">BECOME A PATIENT</Link>
           </li>
           <li className="bg-red-500 px-5 py-2  rounded-md w-[250px]">
-            <Link href="https://ocean.cognisantmd.com/intake/patients.html?linkRef=04f9eeaf-8434-4153-aa26-2d0c910f4020#/online-booking">
-              BOOK APPOINTMENT
-            </Link>
+            {locationAccess === "Whitby" ? (
+              <Link href="https://ocean.cognisantmd.com/intake/patients.html?linkRef=04f9eeaf-8434-4153-aa26-2d0c910f4020#/online-booking">
+                BOOK APPOINTMENT
+              </Link>
+            ) : locationAccess === "Oshawa" ? (
+              <Link href="https://ocean.cognisantmd.com/intake/patients.html?linkRef=d2f2fe68-de99-4725-871e-f22ff35853ef#/online-booking">
+                BOOK APPOINTMENT
+              </Link>
+            ) : (
+              <Link href="https://ocean.cognisantmd.com/intake/patients.html?linkRef=04f9eeaf-8434-4153-aa26-2d0c910f4020#/online-booking">
+                BOOK APPOINTMENT
+              </Link>
+            )}
           </li>
           <li className="bg-red-500 px-5 py-2  rounded-md w-[250px]">
-            <Link href="https://www.bookmyshot.com/9054351100">PHARMACY</Link>
+            {locationAccess === "Whitby" ? (
+              <Link href="https://www.bookmyshot.com/9054351100">PHARMACY</Link>
+            ) : locationAccess === "Oshawa" ? (
+              <Link href="https://pharmachoice.erefills.ca/pharmachoice/centralprofile/orderpage3.php?sphone=(905)%367-8510&sname=Harmony">
+                PHARMACY
+              </Link>
+            ) : (
+              <Link href="https://maplemeds.ca/">PHARMACY</Link>
+            )}
           </li>
         </ul>
 

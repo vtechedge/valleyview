@@ -62,10 +62,13 @@ const Testimonial = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col items-center py-[80px]">
-      <p className="text-[16px] xl:text-[18px] text-blue-600 bg-blue-100 w-auto xl:w-[350px] p-[5px] my-10 text-center rounded-3xl">
+    <div className="w-full flex flex-col items-center py-[80px] gap-3">
+      <p className="text-[16px] xl:text-[18px] text-blue-600 bg-blue-100 w-auto xl:w-[350px] p-[5px] mt-10 text-center rounded-3xl">
         Testimonials.
       </p>
+      <h1 className="text-[34px] font-semibold pb-6">
+        What Our patients has to say!
+      </h1>
       <div className="relative w-full overflow-hidden">
         <div
           ref={marqueeRef}

@@ -30,6 +30,21 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
+const parseBoldText = (text) => {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={index} className="font-semibold">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+};
+
 const NewsDetail = ({ newsItem }) => {
   const router = useRouter();
 
@@ -66,7 +81,7 @@ const NewsDetail = ({ newsItem }) => {
             className="text-[16px] mt-4 w-[90%]"
             style={{ whiteSpace: "pre-line" }}
           >
-            {newsItem.description}
+            {parseBoldText(newsItem.description)}
           </p>
           <button className="bg-blue-600 text-white px-4 py-2 rounded-lg mt-[40px]">
             <Link href="/contact">CONTACT US</Link>
@@ -108,7 +123,7 @@ const NewsDetail = ({ newsItem }) => {
                   </Link>
                 </li>
               </ul>
-            ) : (
+            ) : locationAccess === "Oshawa" ? (
               <ul className="flex flex-col gap-5 pt-4 text-gray-600">
                 <li className="flex gap-5 items-center">
                   <IoPersonSharp />
@@ -126,6 +141,33 @@ const NewsDetail = ({ newsItem }) => {
                   <BiSolidMessage />
                   <Link href="" className="hover:text-red-600">
                     valleyviewharmony@gmail.com
+                  </Link>
+                </li>
+                <li className="flex gap-5 items-center">
+                  <FaLink />
+                  <Link href="" className="hover:text-red-600">
+                    www.valleyviewmedical.ca
+                  </Link>
+                </li>
+              </ul>
+            ) : (
+              <ul className="flex flex-col gap-5 pt-4 text-gray-600">
+                <li className="flex gap-5 items-center">
+                  <IoPersonSharp />
+                  <p>Valleyview Medical Centre</p>
+                </li>
+                <li className="flex gap-5 items-center">
+                  <AiFillHome />
+                  <p>1656 Nash Rd Courtice, ON L1E 1S8</p>
+                </li>
+                <li className="flex gap-5 items-center">
+                  <FaPhone />
+                  <p>+1 905-674-1447</p>
+                </li>
+                <li className="flex gap-5 items-center">
+                  <BiSolidMessage />
+                  <Link href="" className="hover:text-red-600">
+                    valleyviewcourtice@gmail.com
                   </Link>
                 </li>
                 <li className="flex gap-5 items-center">

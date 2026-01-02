@@ -27,11 +27,17 @@ const Footer = () => {
                 <br />
                 Whitby, ON L1N 2L6
               </span>
-            ) : (
+            ) : locationAccess === "Oshawa" ? (
               <span className="font-normal">
                 991 Taunton Rd E B3, Oshawa,
                 <br />
                 ON L1K 0Z7, Canada
+              </span>
+            ) : (
+              <span className="font-normal">
+                1656 Nash Rd #2Courtice
+                <br />
+                Courtice, ON L1E 1S8
               </span>
             )}
           </h1>
@@ -67,9 +73,13 @@ const Footer = () => {
                 <Link href="tel:+19054341662" className="hover:text-red-600">
                   +1 905-434-1662
                 </Link>
-              ) : (
+              ) : locationAccess === "Oshawa" ? (
                 <Link href="tel:+19053678510" className="hover:text-red-600">
-                  +1 905-367-8510
+                  +1 905-367-5402
+                </Link>
+              ) : (
+                <Link href="tel:+19054341662" className="hover:text-red-600">
+                  +1 905-674-1447
                 </Link>
               )}
             </li>
@@ -77,9 +87,13 @@ const Footer = () => {
               <li>
                 FAX US: <span className="font-semibold">+1 905-747-0999</span>
               </li>
+            ) : locationAccess === "Oshawa" ? (
+              <li>
+                FAX US: <span className="font-semibold">905-291-7274</span>
+              </li>
             ) : (
               <li>
-                FAX US: <span className="font-semibold">289-764-1231</span>
+                FAX US: <span className="font-semibold">905-674-8323</span>
               </li>
             )}
 
@@ -92,12 +106,19 @@ const Footer = () => {
                 >
                   info@valleyviewmedical.ca
                 </Link>
-              ) : (
+              ) : locationAccess === "Oshawa" ? (
                 <Link
                   href="mailto:info@valleyviewmedical.ca"
                   className="hover:text-red-600"
                 >
                   valleyviewharmony@gmail.com
+                </Link>
+              ) : (
+                <Link
+                  href="mailto:valleyviewcourtice@gmail.com"
+                  className="hover:text-red-600"
+                >
+                  valleyviewcourtice@gmail.com
                 </Link>
               )}
             </li>
@@ -151,7 +172,7 @@ const Footer = () => {
         <p>
           © 2024 Valleyview Medical Centre | Powered by{" "}
           <Link href="https://www.Vtechedge.com" className="hover:text-red-600">
-            VTECH Edge
+            VtechEdge
           </Link>
         </p>
       </div>

@@ -37,6 +37,7 @@ const linkData = [
 const cityOptions = [
   { name: "Whitby", display: "(Dundas)" },
   { name: "Oshawa", display: "(Harmony)" },
+  { name: "Courtice", display: "(Nash)" },
 ];
 
 const Landing = ({ location }) => {
@@ -65,9 +66,15 @@ const Landing = ({ location }) => {
           alt=""
           className="w-full object-cover h-[92vh]"
         />
-      ) : (
+      ) : activeCity === "Oshawa" ? (
         <img
           src="/images/landing.jpeg"
+          alt=""
+          className="w-full object-cover h-[92vh]"
+        />
+      ) : (
+        <img
+          src="/images/background.jpeg"
           alt=""
           className="w-full object-cover h-[92vh]"
         />
@@ -103,69 +110,101 @@ const Landing = ({ location }) => {
           ))}
         </div>
       </div>
-      <div className="xl:absolute bottom-[-120px] xl:bottom-[-70px] right-0 xl:right-[7%] left-0 xl:left-[7%] bg-white p-[30px] rounded-none xl:rounded-[10px] shadow-xl">
-        <div className="flex flex-col">
-          <h1
-            className="font-medium text-black text-center"
-            style={{ fontSize: Clamp(1, 1.5) }}
-          >
-            EAST <span className="uppercase">{activeCity}</span> IDA PHARMACY
-          </h1>
-        </div>
-        <div className="flex pt-[20px] gap-3 xl:gap-2 w-full justify-center">
-          <div
-            className={`flex flex-row flex-wrap gap-2 font-medium items-center justify-center`}
-            style={{ fontSize: Clamp(0.75, 1) }}
-          >
+      {location !== "Courtice" && (
+        <div className="xl:absolute bottom-[-120px] xl:bottom-[-100px] right-0 xl:right-[7%] left-0 xl:left-[7%] bg-white p-[30px] rounded-none xl:rounded-[10px] shadow-xl">
+          <div className="flex flex-col">
             {activeCity === "Whitby" ? (
-              <>
-                {linkData.map(({ href, text }, index) => (
+              <h1
+                className="font-medium text-black text-center"
+                style={{ fontSize: Clamp(1, 1.5) }}
+              >
+                EAST WHITBY IDA PHARMACY
+              </h1>
+            ) : activeCity === "Oshawa" ? (
+              <h1
+                className="font-medium text-black text-center"
+                style={{ fontSize: Clamp(1, 1.5) }}
+              >
+                Harmony PharmaChoice & Compounding Centre
+              </h1>
+            ) : (
+              <h1
+                className="font-medium text-black text-center"
+                style={{ fontSize: Clamp(1, 1.5) }}
+              >
+                EAST WHITBY IDA PHARMACY
+              </h1>
+            )}
+          </div>
+          <div className="flex pt-[20px] gap-3 xl:gap-2 w-full justify-center">
+            <div
+              className={`flex flex-row flex-wrap gap-2 font-medium items-center justify-center`}
+              style={{ fontSize: Clamp(0.75, 1) }}
+            >
+              {activeCity === "Whitby" ? (
+                <>
+                  {linkData.map(({ href, text }, index) => (
+                    <Link
+                      key={index}
+                      href={href}
+                      className="flex items-center justify-center text-center w-full md:w-auto"
+                    >
+                      <h1
+                        className="bg-red-700 border-transparent hover:bg-red-600
+       px-[20px] py-[10px] text-white hover:text-white rounded-full
+       border-[1px] duration-200 
+       gap-2 text-[16px] w-full md:w-auto"
+                      >
+                        {text}
+                      </h1>
+                    </Link>
+                  ))}
+                </>
+              ) : activeCity === "Oshawa" ? (
+                <div className="flex items-center gap-4 flex-wrap justify-center">
+                  <img
+                    src="/images/pharmalogo.jpeg"
+                    alt=""
+                    className="w-[200px]"
+                  />
                   <Link
-                    key={index}
-                    href={href}
+                    href="https://pharmachoice.erefills.ca/pharmachoice/centralprofile/orderpage3.php?sphone=(905)%367-8510&sname=Harmony"
                     className="flex items-center justify-center text-center w-full md:w-auto"
                   >
                     <h1
                       className="bg-red-700 border-transparent hover:bg-red-600
-              px-[20px] py-[10px] text-white hover:text-white rounded-full
-              border-[1px] duration-200 
-              gap-2 text-[16px] w-full md:w-auto"
+       px-[20px] py-[10px] text-white hover:text-white rounded-full
+       border-[1px] duration-200 
+       gap-2 text-[16px] w-full md:w-auto"
                     >
-                      {text}
+                      PHARMACY
                     </h1>
                   </Link>
-                ))}
-              </>
-            ) : (
-              <div className="flex items-center gap-4 flex-wrap justify-center">
-                <div className="flex items-center gap-2">
-                  <h2 className="text-[16px] text-red-400">Call Us:</h2>
-                  <Link href="tel:+19053678510" className="hover:text-red-600">
-                    +1 905-367-8510
-                  </Link>
-                </div>{" "}
-                |
-                <div className="flex items-center gap-2">
-                  <h2 className="text-[16px] text-red-400">Fax Us:</h2>
-                  <li className="list-none">
-                    FAX US: <span className="font-semibold">289-764-1231</span>
-                  </li>
-                </div>{" "}
-                |
-                <div className="flex items-center gap-2">
-                  <h2 className="text-[16px] text-red-400">Email Us:</h2>
-                  <Link
-                    href="mailto:info@valleyviewmedical.ca"
-                    className="hover:text-red-600"
-                  >
-                    valleyviewharmony@gmail.com
-                  </Link>
                 </div>
-              </div>
-            )}
+              ) : (
+                <>
+                  {/* {linkData.map(({ href, text }, index) => (
+           <Link
+             key={index}
+             href={href}
+             className="flex items-center justify-center text-center w-full md:w-auto"
+           >
+             <h1
+               className="bg-red-700 border-transparent hover:bg-red-600
+       px-[20px] py-[10px] text-white hover:text-white rounded-full
+       border-[1px] duration-200 
+       gap-2 text-[16px] w-full md:w-auto"
+             >
+               {text}
+             </h1>
+           </Link>
+         ))} */}
+                </>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
