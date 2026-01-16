@@ -85,6 +85,18 @@ const Header = () => {
           >
             BOOK APPOINTMENT
           </li>
+        ) : locationAccess === "Courtice" ? (
+          <li
+            className="group relative px-[23px] py-[8px] bg-red-700 border-transparent border-[1px] hover:bg-red-500
+         text-white hover:text-white cursor-pointer duration-300 rounded-full"
+            onClick={() =>
+              handleLocationClick(
+                "https://ocean.cognisantmd.com/online-booking/38259596-8c5a-4814-9fee-31fc9f106803"
+              )
+            }
+          >
+            BOOK APPOINTMENT
+          </li>
         ) : (
           <li
             className="group relative px-[23px] py-[8px] bg-red-700 border-transparent border-[1px] hover:bg-red-500
