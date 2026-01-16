@@ -49,9 +49,8 @@ const HamburgerMenu = ({ data }) => {
       </button>
 
       <div
-        className={`fixed top-0 right-0 w-full bg-white text-black h-full z-50 transform ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300`}
+        className={`fixed top-0 right-0 w-full bg-white text-black h-full z-50 transform ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+          } transition-transform duration-300`}
       >
         <div className="flex justify-between items-center p-5">
           <button onClick={toggleMenu}>
@@ -69,9 +68,9 @@ const HamburgerMenu = ({ data }) => {
                 <li key={index}>
                   <Link href={`/staff/${items.slug.current}`}>
                     {items.categories &&
-                    items.categories.some((category) =>
-                      category.toLowerCase().includes("pharmacist")
-                    )
+                      items.categories.some((category) =>
+                        category.toLowerCase().includes("pharmacist")
+                      )
                       ? `Pharmacist ${items.name}`
                       : items.name}
                   </Link>
@@ -118,6 +117,10 @@ const HamburgerMenu = ({ data }) => {
               </Link>
             ) : locationAccess === "Oshawa" ? (
               <Link href="https://ocean.cognisantmd.com/intake/patients.html?linkRef=d2f2fe68-de99-4725-871e-f22ff35853ef#/online-booking">
+                BOOK APPOINTMENT
+              </Link>
+            ) : locationAccess === "Courtice" ? (
+              <Link href="https://ocean.cognisantmd.com/online-booking/38259596-8c5a-4814-9fee-31fc9f106803">
                 BOOK APPOINTMENT
               </Link>
             ) : (

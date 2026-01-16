@@ -197,12 +197,46 @@ const Registration = () => {
               preventive care, we aim to be your one-stop solution for
               maintaining and enhancing your well-being.{" "}
             </p>
-            {/* <button
-              className="bg-blue-600 px-[20px] py-[8px] w-full md:w-[250px] text-white
+            {locationAccess === "Whitby" ? (
+              <a
+                href="https://ocean.cognisantmd.com/intake/patients.html?linkRef=04f9eeaf-8434-4153-aa26-2d0c910f4020#/online-booking"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button
+                  className="bg-blue-600 px-[20px] py-[8px] w-full md:w-[250px] text-white
            hover:text-blue-600 border-[1px] border-transparent hover:border-blue-600 hover:bg-white duration-500 rounded-xl mt-[10px]"
-            >
-              BOOK APPOINTMENT
-            </button> */}
+                >
+                  BOOK APPOINTMENT
+                </button>
+              </a>
+            ) : locationAccess === "Oshawa" ? (
+              <a
+                href="https://ocean.cognisantmd.com/online-booking/d2f2fe68-de99-4725-871e-f22ff35853ef"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button
+                  className="bg-blue-600 px-[20px] py-[8px] w-full md:w-[250px] text-white
+           hover:text-blue-600 border-[1px] border-transparent hover:border-blue-600 hover:bg-white duration-500 rounded-xl mt-[10px]"
+                >
+                  BOOK APPOINTMENT
+                </button>
+              </a>
+            ) : locationAccess === "Courtice" ? (
+              <a
+                href="https://ocean.cognisantmd.com/online-booking/38259596-8c5a-4814-9fee-31fc9f106803"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button
+                  className="bg-blue-600 px-[20px] py-[8px] w-full md:w-[250px] text-white
+           hover:text-blue-600 border-[1px] border-transparent hover:border-blue-600 hover:bg-white duration-500 rounded-xl mt-[10px]"
+                >
+                  BOOK APPOINTMENT
+                </button>
+              </a>
+            ) : null}
           </div>
         </div>
       </div>
